@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="eChartRef" style="width:600px;height:300px;"></div>
+
+  <script src="../js/echarts.js"></script>
+
+  <script>
+    // 1.获取到一个容器,第一个参数是元素容器，第二个参数是主题（light,dark,还可以自定义主题），第三个参数是一个对象{width:,height:}可以设置容器大小
+    const eChartRef=echarts.init(document.getElementById('eChartRef'),'dark')
+    // 这个容器实例上有很多方法
+    // resize(),当窗口改变的时候可以通过这个方法重新设置容器的大小
+    // setOption(),设置要展示的eChart的option
+    // chart.on(eventName, query, handler);事件监听
+
+    // eCharts上有很多方法
+    // registerTheme(),自定义主题,第一个参数，主题名称，第二个参数一个json主题文件
+    // registerMap(),设置地图registerMap('china',china-json文件)
+    console.log(eChartRef,echarts)
+
+    const option={
+      // 图形标题
+      title:{
+        text:'学习eChart'
+      },
+      // 指定每个颜色代表的内容
+      legend:{
+
+      },
+      // 全局调色器,eChart会自动选择相应的颜色
+      color:['#f00'],
+      // series数组，设置每个系列的选项
+      series:[
+        {
+          // 局部调色器
+          color:['#f4cccc'],
+          // 数据集--在系列中设置
+          data:[],
+          // 图形类型 bar -- 柱状图  pie -- 饼图  line -- 折线图 scatter -- 散点图 map -- 地图
+          type:'',
+          // 该系列的style
+          itemStyle:{}
+        },
+        {}
+      ],
+      // 点击提示内容
+      tooltip:{
+        // 触发方式点击item
+        trigger:'item',
+        // 提示内容
+        formatter:''//也可以是函数,做一些数据处理
+      },
+      // 声明一个x轴，类目轴(category) data 轴系列的名称
+      xAxis:{type:'category',data:['A','B','C']},
+      // 声明一个y轴，数值轴
+      yAxis:{},
+      // 全局数据集
+      dataset:{
+        // 提供的数据
+        source:[
+          // 如果设置全局数据集,默认情况下,series每个系列对自动对应到dataset的每一列
+          [],
+          []
+        ]
+      }
+    }
+
+    // 2.设置eChart的option
+    eChartRef.setOption(option)
+  </script>
+</body>
+
+</html>
