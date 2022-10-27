@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="wrapper" style="width:800px;height:600px;"></div>
+
+  <script src="../js/echarts.js"></script>
+  <script>
+    const echart = echarts.init(document.querySelector('.wrapper'))
+    let data = []
+    for (let i = 0; i < 5; i++) {
+      data.push(Math.round(Math.random() * 200))
+    }
+    const option = {
+      xAxis: {
+        // xAxis.max 建议设为 'dataMax' 表示用数据的最大值作为 X 轴最大值，视觉效果更好
+        max: 'dataMax'
+      },
+      yAxis: {
+        type:'category',
+        data: ['A', 'B', 'C', 'D', 'E'],
+        max:4,
+        // yAxis.inverse 设为 true，表示 Y 轴从下往上是从小到大的排列
+        // yAxis.animationDuration 建议设为 300，表示第一次柱条排序动画的时长
+        // yAxis.animationDurationUpdate 建议设为 300，表示第一次后柱条排序动画的时长
+        inverse: true,
+        animationDuration: 300,
+        animationDurationUpdate:300,
+      },
+      series: [{
+        realtimeSort: true,
+        type: 'bar',
+        data: data,
+        label:{
+          show:true,
+          position:'right',
+          valueAnimation:true
+        },
+        legend:{
+          show:true
+        }
+      }],
+      animationDuration: 3000,
+      animationDurationUpdate: 3000,
+      animationEasing: 'linear',
+      animationEasingUpdate: 'linear'
+    }
+
+    function update() {
+      const data = option.series[0].data
+      for (let i = 0; i < data.length; ++i) {
+        if (Math.random() > 0.9) {
+          data[i] += Math.round(Math.random() * 2000)
+        } else {
+          data[i] += Math.round(Math.random() * 200)
+        }
+      }
+
+      echart.setOption(option)
+    }
+
+    setInterval(() => {
+      update()
+    }, 3000)
+    echart.setOption(option)
+  </script>
+
+</body>
+
+</html>

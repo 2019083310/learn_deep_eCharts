@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 最简单的柱状图 -->
+  <div class="main" style="width: 600px;height: 400px;"></div>
+  <!-- 多系列的柱状图 -->
+  <div class="many" style="width:600px;height:400px;"></div>
+
+  <!-- 基本柱状图，最简单的柱状图 -->
+  <script src="../js/echarts.js"></script>
+  <script>
+    const echart = echarts.init(document.querySelector('.main'))
+    const option = {
+      title: {
+        text: '最简单的柱状图'
+      },
+      xAxis: {
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sar', 'Sun']
+      },
+      yAxis: {},
+      series: [{
+        type: 'bar',
+        data: [23, 24, 18, 25, 27, 28, 25]
+      }]
+    }
+
+    echart.setOption(option)
+  </script>
+
+  <!-- 多系列的柱状图 -->
+  <script>
+    const echart2 = echarts.init(document.querySelector('.many'))
+    const option2 = {
+      title: {
+        text: '多系列的柱状图'
+      },
+      xAxis: {
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sar', 'Sun']
+      },
+      yAxis: {},
+      series: [{
+          type: 'bar',
+          data: [23, 24, 18, 25, 27, 28, 25],
+          barWidth:'20%',
+        },
+        {
+          type: 'bar',
+          data: [26, 24, 18, 22, 23, 20, 27],
+          itemStyle: {
+            barBorderRadius: 5,
+            borderWidth:1,
+            borderType:'solid',
+            borderColor:'#73c0de',
+            color:'#f00'
+          }
+        }
+      ],
+    }
+
+    echart2.setOption(option2)
+  </script>
+  <script>
+
+  </script>
+</body>
+
+</html>

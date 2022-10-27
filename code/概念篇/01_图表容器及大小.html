@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 1.准备一个容器,容器的大小可以指定 -->
+  <div id="main" style="width: 600px;height: 400px;"></div>
+
+  <!-- 2.初始化echarts实例 -->
+  <script src="../js/echarts.js"></script>
+
+  <script>
+    // 在初始化echarts示例的时候，可以显示指定容器的大小
+    const myEchart=echarts.init(document.getElementById('main'),null,{
+      width:800,
+      height:600
+    })
+    // 制定图表的配置项个数据
+    const option={
+      title:{
+        text:'ECharts 入门示例'
+      },
+      tooltip:{},
+      legend:{
+        data:['销量']
+      },
+      xAxis:{
+        data:['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      },
+      yAxis:{},
+      series:[
+        {
+          name:'销量',
+          type:'bar',
+          data:[5,20,36,10,10,20]
+        }
+      ]
+    }
+
+    // 使用刚刚制定的配置项和数据显示表表
+    myEchart.setOption(option)
+    let eWidth=600
+    let eHeight=400
+
+    // 当窗口变化的时候，echarts的大小也跟着响应式变化
+    window.addEventListener('resize',(e)=>{
+      eWidth=document.documentElement.clientWidth/3
+      eHeight=document.documentElement.clientHeight/2
+      myEchart.resize({
+        width:eWidth,
+        height:eHeight
+      })
+    })
+  </script>
+
+</body>
+</html>

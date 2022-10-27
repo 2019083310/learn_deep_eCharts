@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- echarts支持多种安装方式，这里以cdn的方式使用 -->
+  <!-- 绘制自己的第一个简单的图表 -->
+
+  <!-- 1.准备一个容器 -->
+  <div id="main" style="width: 600px;height: 400px;"></div>
+
+  <!-- 2.初始化echarts实例 -->
+  <script src="./js/echarts.js"></script>
+
+  <script>
+    const myEchart=echarts.init(document.getElementById('main'))
+    // 制定图表的配置项个数据
+    const option={
+      title:{
+        text:'ECharts 入门示例'
+      },
+      tooltip:{},
+      legend:{
+        data:['销量']
+      },
+      xAxis:{
+        data:['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      },
+      yAxis:{},
+      series:[
+        {
+          name:'销量',
+          type:'bar',
+          data:[5,20,36,10,10,20]
+        }
+      ]
+    }
+
+    // 使用刚刚制定的配置项和数据显示表表
+    myEchart.setOption(option)
+  </script>
+
+</body>
+</html>

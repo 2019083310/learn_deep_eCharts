@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 有时候我们需要两个折线图叠加起来才能看出来他们总和的变化趋势，这时候就用到了堆叠折线图 -->
+  <div class="wrapper" style="width:800px;height:600px;"></div>
+
+  <script src="../js/echarts.js"></script>
+  <script>
+    const echart = echarts.init(document.querySelector('.wrapper'))
+    const option = {
+      xAxis: {
+        data: ['A', 'B', 'C', 'D', 'E']
+      },
+      yAxis: {},
+      series: [{
+        type: 'bar',
+        data: [10, 22, 28, 43, 49],
+        // 通过stack属性让柱状图叠加
+        stack: 'x',
+        // name:'数量'
+      }, {
+        type: 'bar',
+        data: [5, 4, 3, 5, 10],
+        stack: 'x',
+        // name:'数量'
+      }]
+    }
+
+    echart.setOption(option)
+  </script>
+</body>
+
+</html>
